@@ -7,11 +7,13 @@ public class MovingObject : MonoBehaviour
 
     public void SetDirection(Vector2 dir)
     {
-        direction = dir;
+        direction = dir.normalized;
     }
 
     void Update()
-    {
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
+{
+    if (!this || !gameObject || !gameObject.activeSelf) return;
+
+    transform.position += (Vector3)(direction * speed * Time.deltaTime);
+}
 }
